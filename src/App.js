@@ -40,6 +40,14 @@ function App() {
     setContacts(sortedContactsP);
   };
 
+  const deleteContact = (contactId) => {
+    const filteredContacts = contacts.filter((contactsJSON) => {
+      return contactsJSON.id !== contactId;
+    });
+
+    setContacts(filteredContacts);
+  };
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
@@ -81,6 +89,11 @@ function App() {
                 </td>
                 {contactsJSON.wonOscar === true && <td>🏆</td>}
                 {contactsJSON.wonEmmy === true && <td>🏆</td>}
+                <td>
+                  <button onClick={() => deleteContact(contactsJSON.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
