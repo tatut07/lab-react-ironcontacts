@@ -1,12 +1,23 @@
 import "./App.css";
+import { useState } from "react";
 import contactsJSON from "./contacts.json";
-// import { useState } from "react";
 
 function App() {
-  const fiveContacts = contactsJSON.slice(0, 5);
+  const [contacts, setContacts] = useState(contactsJSON.slice(0, 5));
+  const [newContact, setNewContact] = useState(contactsJSON.slice(5, 6));
+
+  // Add random contact
+  const addRandomContact = () => {
+    setContacts([...contacts, newContact]);
+    setNewContact(
+      contactsJSON[Math.floor(Math.random() * contactsJSON.length)]
+    );
+  };
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <button onClick={addRandomContact}>Add random contact</button>
       <table>
         <thead>
           <tr>
@@ -28,7 +39,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {fiveContacts.map((contactsJSON) => {
+          {contacts.map((contactsJSON) => {
             return (
               <tr key={contactsJSON.id}>
                 <td>
@@ -40,8 +51,8 @@ function App() {
                 <td>
                   <p>{contactsJSON.popularity}</p>
                 </td>
-                {contactsJSON.wonOscar === true && <td>"🏆"</td>}
-                {contactsJSON.wonEmmy === true && <td>"🏆"</td>}
+                {contactsJSON.wonOscar === true && <td>🏆</td>}
+                {contactsJSON.wonEmmy === true && <td>🏆</td>}
               </tr>
             );
           })}
