@@ -13,28 +13,26 @@ function App() {
             <th>
               <h3>Picture</h3>
             </th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
             <th>
               <h3>Name</h3>
             </th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
             <th>
               <h3>Popularity</h3>
+            </th>
+            <th>
+              <h3>wonOscar</h3>
+            </th>
+            <th>
+              <h3>wonEmmy</h3>
             </th>
           </tr>
         </thead>
         <tbody>
           {fiveContacts.map((contactsJSON) => {
             return (
-              <tr>
+              <tr key={contactsJSON.id}>
                 <td>
-                  <img src={contactsJSON.pictureUrl} />
+                  <img src={contactsJSON.pictureUrl} alt="contact" />
                 </td>
                 <td>
                   <p>{contactsJSON.name}</p>
@@ -42,6 +40,8 @@ function App() {
                 <td>
                   <p>{contactsJSON.popularity}</p>
                 </td>
+                {contactsJSON.wonOscar === true && <td>"🏆"</td>}
+                {contactsJSON.wonEmmy === true && <td>"🏆"</td>}
               </tr>
             );
           })}
