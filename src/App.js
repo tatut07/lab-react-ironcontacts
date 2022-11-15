@@ -14,10 +14,38 @@ function App() {
     );
   };
 
+  const sortByName = () => {
+    const sortedContacts = [...contacts].sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    setContacts(sortedContacts);
+  };
+
+  const sortByPopularity = () => {
+    const sortedContactsP = [...contacts].sort((a, b) => {
+      if (a.popularity < b.popularity) {
+        return -1;
+      } else if (a.popularity > b.popularity) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    setContacts(sortedContactsP);
+  };
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
       <button onClick={addRandomContact}>Add random contact</button>
+      <button onClick={sortByName}>Sort by name</button>
+      <button onClick={sortByPopularity}>Sort by popularity</button>
       <table>
         <thead>
           <tr>
